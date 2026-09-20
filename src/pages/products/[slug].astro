@@ -80,7 +80,13 @@ const related = product ? getProductsByCategory(product.category).filter((p) => 
 			<section>
 				<h2 class="section-title">You might also like</h2>
 				<div class="grid">
-					{related.map((p) => <ProductCard product={p} />)}
+					{related.map((p) => (
+						<a class="card" href={`/products/${p.slug}`} style="text-decoration:none" aria-label={`${p.name}, variant ${p.slug}, $${p.price}.00, product details link`}>
+							<div class="img"></div>
+							<h3>{p.name}</h3>
+							<p class="price">${p.price}</p>
+						</a>
+					))}
 				</div>
 			</section>
 		)}
@@ -168,7 +174,7 @@ const related = product ? getProductsByCategory(product.category).filter((p) => 
 					.map((slug) => {
 						const p = getProductBySlug(slug);
 						if (!p) return "";
-						return `<a class="card" href="/products/${p.slug}" style="text-decoration:none"><div class="img"></div><h3>${p.name}</h3><p class="price">$${p.price}</p></a>`;
+						return `<a class="card" href="/products/${p.slug}" style="text-decoration:none" aria-label="${p.name}, variant ${p.slug}, $${p.price}.00, product details link"><div class="img"></div><h3>${p.name}</h3><p class="price">$${p.price}</p></a>`;
 					})
 					.join("") +
 				`</div>`;
