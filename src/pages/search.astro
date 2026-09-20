@@ -5,7 +5,8 @@ import Layout from "../layouts/Layout.astro";
 import ProductCard from "../components/ProductCard.astro";
 import { searchProducts } from "../lib/inventory";
 
-const query = Astro.url.searchParams.get("q") ?? "";
+const query =
+	Astro.url.searchParams.get("q") ?? Astro.url.searchParams.get("search") ?? "";
 const results = searchProducts(query);
 ---
 
